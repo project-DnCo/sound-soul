@@ -5,7 +5,7 @@ authors = [{ name = "project-DnCo", email = "project.dnco@gmail.com" }]
 description = "Soul Eater themed discord bot."
 readme = "README.md"
 requires-python = ">=3.12"
-dependencies = []
+dependencies = ["discord-py>=2.6.4"]
 
 
 [project.scripts]
