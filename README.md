@@ -1,0 +1,1 @@
+> A sound "soul" dwells within a sound mind and a sound body.
