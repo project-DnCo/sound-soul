@@ -10,4 +10,7 @@ wheels/
 .venv
 
 # Auth
-.env
+/.env
+
+# Misc
+/notes.txt
