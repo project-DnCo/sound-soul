@@ -5,11 +5,15 @@ authors = [{ name = "project-DnCo", email = "project.dnco@gmail.com" }]
 description = "Soul Eater themed discord bot."
 readme = "README.md"
 requires-python = ">=3.12"
-dependencies = []
+dependencies = [
+    "discord-py[voice]>=2.6.4",
+    "pydantic>=2.12.4",
+    "pydantic-settings>=2.12.0",
+]
 
 
 [project.scripts]
-sound_soul = "sound_soul:main"
+bot = "sound_soul:main"
 
 
 [tool.uv]
