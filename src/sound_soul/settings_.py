@@ -18,7 +18,7 @@ class _AudioFiles(BaseModel, frozen=True):
     @field_validator('*')
     @classmethod
     def _expand_path(cls, value: str) -> str:
-        return (_ROOT_DIR / cls._DIR_NAME / value).as_posix()
+        return (_ROOT_DIR / cls._DIR_NAME / value).resolve(strict=True).as_posix()
 
 
 class _Settings(BaseSettings):
