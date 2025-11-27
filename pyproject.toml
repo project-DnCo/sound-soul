@@ -1,6 +1,6 @@
 [project]
 name = "sound-soul"
-version = "0.1.0"
+version = "0.2.0"
 authors = [{ name = "project-DnCo", email = "project.dnco@gmail.com" }]
 description = "Soul Eater themed discord bot."
 readme = "README.md"
