@@ -3,6 +3,7 @@ from typing import Callable, Final
 
 import discord
 from discord.ext import commands
+from loguru import logger
 
 from . import settings
 from .exceptions import CannotEnsureVoiceException
@@ -22,7 +23,8 @@ class Main(commands.Cog):
     @_hail.before_invoke
     async def _ensure_voice(self, ctx: commands.Context) -> None:
         if not ctx.guild:
-            return
+            logger.warning('`dm_messages` intent is supposed to be unset.')
+            raise CannotEnsureVoiceException
         assert isinstance(ctx.author, discord.Member)
         voice_channel = ctx.author.voice and ctx.author.voice.channel
         if ctx.voice_client:
@@ -38,6 +40,8 @@ class Main(commands.Cog):
     async def _on_hail_error(self, ctx: commands.Context, error: commands.CommandError) -> None:
         if isinstance(error, CannotEnsureVoiceException):
             await ctx.reply(str(error))
+        else:
+            raise
 
     @commands.command(name='bye', help='Disconnects me from voice')
     async def _stop(self, ctx: commands.Context, event: asyncio.Event | None = None) -> None:
@@ -55,9 +59,8 @@ class Main(commands.Cog):
 
         def after_hail(exception: Exception | None) -> None:
             event.set()
-            print(f'Player error: {exception}') if exception else None
             if exception:
-                ...
+                logger.opt(exception=exception).exception('Player error:')
 
         asyncio.create_task(ctx.invoke(self._stop, event))
         return after_hail

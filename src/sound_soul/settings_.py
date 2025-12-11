@@ -1,11 +1,12 @@
 from pathlib import Path
-from typing import ClassVar
+from typing import ClassVar, Final
 
 from pydantic import SecretStr, BaseModel, field_validator, ConfigDict
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
-_ROOT_DIR: Path = Path(__file__).parent.parent.parent
+_ROOT_DIR: Final[Path] = Path(__file__).parent.parent.parent
+_DEBUG: Final[bool] = False
 
 
 class _AudioFiles(BaseModel, frozen=True):
@@ -26,6 +27,8 @@ class _Settings(BaseSettings):
 
     API_TOKEN: SecretStr
     audio_files: _AudioFiles = _AudioFiles()
+    DEBUG: bool = _DEBUG
+    LOG_DIR: Path = _ROOT_DIR / 'logs'
 
 
 settings = _Settings()  # type: ignore[call-arg]

@@ -12,6 +12,9 @@ wheels/
 # Auth
 /.env
 
+# Logs
+/logs/
+
 # Misc
 /notes.txt
 /tests/manual/
