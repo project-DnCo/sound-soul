@@ -9,8 +9,6 @@ class Bot(commands.Bot):
     _ACTIVITY: Final[str] = 'ss>>hail to resonate'
 
     def __init__(self) -> None:
-        discord.utils.setup_logging()  # TODO: customize
-
         intents = discord.Intents(
             guilds=True,
             guild_messages=True,
